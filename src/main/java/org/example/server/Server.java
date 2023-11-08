@@ -13,4 +13,7 @@ public class Server {
         serverWindow = new ServerWindow(false);
 
     }
+    public void putPersonToDB(int id,String name){
+        mapPersons.put(id,name);
+    }
 }

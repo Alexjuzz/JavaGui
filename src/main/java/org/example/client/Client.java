@@ -37,5 +37,11 @@ public class Client {
         return cw.getMessage();
 
     }
+    private  void addUser(){
+        server.putPersonToDB(id,cw.getLoginUser());
+    }
+    private void sendMessageToChat(){
+
+    }
 
 }

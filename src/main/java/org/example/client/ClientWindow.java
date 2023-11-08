@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowListener;
 
 public class ClientWindow extends JFrame implements ActionListener {
     private static final  int WIN_HEIGHT = 333;
