@@ -6,16 +6,17 @@ import org.example.server.Server;
 import java.awt.*;
 
 public class Client {
-    ClientWindow cw;
+    ClientWindow clientWin;
     Server server;
     private String name;
     private String password;
     private static int id = 1;
 
     public Client(Server server) {
-        cw = new ClientWindow();
+
         id++;
         this.server = server;
+        clientWin = new ClientWindow(this.server);
     }
 
     public String getName() {
@@ -34,13 +35,15 @@ public class Client {
 
 
     public String getMessage() {
-        return cw.getMessage();
+        return clientWin.getMessage();
 
     }
-    private  void addUser(){
-        server.putPersonToDB(id,cw.getLoginUser());
+
+    private void addUser() {
+        server.putPersonToDB(id, clientWin.getLoginUser());
     }
-    private void sendMessageToChat(){
+
+    private void sendMessageToChat() {
 
     }
 
