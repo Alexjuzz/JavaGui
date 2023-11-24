@@ -47,7 +47,9 @@ public class ClientGUI extends JFrame implements ClientView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(serverGUI.serverIsRun()){
-                    serverGUI.sendMessage("Вы");
+                setVisible(false);
+                clientWidowPanel();
+
                 }
             }
         });
@@ -55,6 +57,15 @@ public class ClientGUI extends JFrame implements ClientView {
         loginpanel.add(passwordTextArea);
         loginpanel.add(buttonLogin);
     return loginpanel;
+    }
+    private void clientWidowPanel(){
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocation(300,300);
+        setVisible(true);
+        setTitle("Clinent Chat window");
+        systemMessageMainMenu.setPreferredSize(new Dimension(100,250));
+        add(systemMessageMainMenu,BorderLayout.NORTH);
+        add(sendPanel(),BorderLayout.SOUTH);
     }
     private JPanel ConnectPanel(){
         JPanel connectPannel = new JPanel(new GridLayout(1,2));
