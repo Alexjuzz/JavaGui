@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.Third.Pair;
 import org.example.second.Animals;
 import org.example.second.Cat;
 import org.example.second.CompareArraysClass;
@@ -11,6 +12,8 @@ public class Main {
     public static void main(String[] args) {
        Calcs calc = new Calcs();
        CompareArraysClass compareArraysClass = new CompareArraysClass();
+        Pair<Integer,String> pair = new Pair<>(12,"VASYA");
+        Pair<Float,Double> pair1 = new Pair<>(231f,0.0);
         List<Cat> cats1 = List.of(new Cat(), new Cat(), new Cat());
         List<Cat> cats2 = List.of(new Cat(), new Cat(), new Cat());
 
@@ -22,5 +25,11 @@ public class Main {
         System.out.println("Compare cats1 and cats2: " + compareArraysClass.CompareArray(cats1, cats2));
         System.out.println("Compare cats1 and dogs: " + compareArraysClass.CompareArray(cats1, dogs));
         System.out.println("Compare cats1 and Animals: " + compareArraysClass.CompareArray(cats1, animals));
+
+        System.out.println(pair);
+        System.out.println(pair1);
+
+
+
     }
     }
