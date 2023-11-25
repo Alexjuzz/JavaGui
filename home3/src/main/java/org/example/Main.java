@@ -19,7 +19,7 @@ public class Main {
         List<Dog> dogs = List.of(new Dog(), new Dog(), new Dog());
         List<Animals> animals = List.of(new Dog(), new Dog(), new Cat());
 
-        System.out.println("Compare cats1 and cats2: " + compareArraysClass.CompareArray(cats1, cats1));
+        System.out.println("Compare cats1 and cats2: " + compareArraysClass.CompareArray(cats1, cats2));
         System.out.println("Compare cats1 and dogs: " + compareArraysClass.CompareArray(cats1, dogs));
         System.out.println("Compare cats1 and Animals: " + compareArraysClass.CompareArray(cats1, animals));
     }
