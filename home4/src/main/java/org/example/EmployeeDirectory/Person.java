@@ -1,4 +1,4 @@
 package org.example.EmployeeDirectory;
 
-public class Person {
+public interface Person {
 }
