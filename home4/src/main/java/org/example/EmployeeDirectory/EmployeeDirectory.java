@@ -42,6 +42,15 @@ public class EmployeeDirectory {
             }
         }return "Сотрудник не найден";
     }
+    public List<Person> getPersonByExperience(double experience){
+        List<Person> people = new ArrayList<>();
+        for (Person p : personList) {
+            if(p.getExperience() == experience){
+                people.add(p);
+            }
+        }
+        return people;
+    }
 
     public boolean addPerson(Person person) {
         if (person == null) {
