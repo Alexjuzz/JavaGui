@@ -26,14 +26,21 @@ public class EmployeeDirectory {
         this.personList = new ArrayList<>();
     }
 
-    public List<String> getPersonByName(String name) {
+    public List<String> getPhoneByName(String name) {
         List<String> resultList = new ArrayList<>();
         for (Person p : personList) {
             if(p.getName().equals(name)){
-                resultList.add(p.getName());
+                resultList.add("Номер сотрудника " + p.getName() + " " + p.getPhone());
             }
         }
-        return
+        return resultList;
+    }
+    public String getPersonById(int id) {
+        for (Person p : personList) {
+            if(p.getId() == id){
+                return p.getName();
+            }
+        }return "Сотрудник не найден";
     }
 
     public boolean addPerson(Person person) {

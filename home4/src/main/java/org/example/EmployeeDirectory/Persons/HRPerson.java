@@ -1,12 +1,13 @@
 package org.example.EmployeeDirectory.Persons;
 
 public class HRPerson implements Person {
-    private String name;
-    private int age;
-    private int id;
-    private int experience;
+    private final String name;
+    private final int age;
+    private final int id;
+    private double experience;
+    private String phone;
 
-    public HRPerson(String name, int age, int id, int experience) {
+    public HRPerson(String name, int age, int id, double experience) {
         this.name = name;
         this.age = age;
         this.id = id;
@@ -14,7 +15,7 @@ public class HRPerson implements Person {
     }
 
     @Override
-    public int getExperience() {
+    public double getExperience() {
         return this.experience;
     }
 
@@ -31,5 +32,10 @@ public class HRPerson implements Person {
     @Override
     public int getId() {
         return this.id;
+    }
+
+    @Override
+    public String getPhone() {
+        return this.phone;
     }
 }

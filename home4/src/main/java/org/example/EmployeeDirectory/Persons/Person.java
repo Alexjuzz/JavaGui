@@ -1,8 +1,10 @@
 package org.example.EmployeeDirectory.Persons;
 
 public interface Person {
-        int getExperience();
+        double getExperience();
         String getName();
         int getAge();
         int getId();
+
+        String getPhone();
 }
