@@ -7,11 +7,12 @@ public class HRPerson implements Person {
     private double experience;
     private String phone;
 
-    public HRPerson(String name, int age, int id, double experience) {
+    public HRPerson(String name, int age, int id, double experience, String phone) {
         this.name = name;
         this.age = age;
         this.id = id;
         this.experience = experience;
+        this.phone = phone;
     }
 
     @Override
@@ -37,5 +38,11 @@ public class HRPerson implements Person {
     @Override
     public String getPhone() {
         return this.phone;
+    }
+    @Override
+    public String toString(){
+        return "Имя : " +getName() +
+                " ID : " + getId() +
+                 " Phone : " + getPhone() + "\n";
     }
 }

@@ -20,7 +20,7 @@ import java.util.List;
 Добавить метод добавление нового сотрудника в справочник
  */
 public class EmployeeDirectory {
-    List<Person> personList;
+    private    List<Person> personList;
 
     public EmployeeDirectory() {
         this.personList = new ArrayList<>();
@@ -59,7 +59,7 @@ public class EmployeeDirectory {
         if (personList.size() == 0) {
             personList.add(person);
         } else {
-           if(checkPersonOnList(person)){
+           if(!checkPersonOnList(person)){
                return false;
            }else {
                personList.add(person);
@@ -72,9 +72,12 @@ public class EmployeeDirectory {
     private boolean checkPersonOnList(Person person){
         for (Person p : personList
              ) {
-            return !p.equals(person);
+            return !(p.getId() == person.getId());
         }
 
         return  false;
+    }
+    public void getSize(){
+        System.out.println(personList.size());
     }
 }
