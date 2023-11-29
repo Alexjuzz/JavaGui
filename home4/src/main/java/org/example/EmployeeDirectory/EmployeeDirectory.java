@@ -27,7 +27,13 @@ public class EmployeeDirectory {
     }
 
     public List<String> getPersonByName(String name) {
-
+        List<String> resultList = new ArrayList<>();
+        for (Person p : personList) {
+            if(p.getName().equals(name)){
+                resultList.add(p.getName());
+            }
+        }
+        return
     }
 
     public boolean addPerson(Person person) {
@@ -37,16 +43,22 @@ public class EmployeeDirectory {
         if (personList.size() == 0) {
             personList.add(person);
         } else {
-            for (Person p : personList
-            ) {
-                if (p.equals(person)) {
-                    return false;
-                } else {
-                    personList.add(person);
-                    return true;
-                }
-            }
+           if(checkPersonOnList(person)){
+               return false;
+           }else {
+               personList.add(person);
+               return true;
+           }
         }
         return false;
+    }
+
+    private boolean checkPersonOnList(Person person){
+        for (Person p : personList
+             ) {
+            return !p.equals(person);
+        }
+
+        return  false;
     }
 }
