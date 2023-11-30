@@ -27,8 +27,9 @@ public class Philosope {
     }
 
     public void setRightFork(Fork rightFork) {
-        if (this.rightFork == null) {
+        if (this.rightFork == null && !rightFork.isBusy()) {
             this.rightFork = rightFork;
+            this.rightFork.takeFork();
         }
     }
 
@@ -37,8 +38,11 @@ public class Philosope {
     }
 
     public void setLeftFork(Fork leftFork) {
-        if (this.leftFork == null) {
+        if (this.leftFork == null && !leftFork.isBusy()) {
             this.leftFork = leftFork;
+            this.leftFork.takeFork();
+        }else {
+            System.out.println("Левая рука занята");
         }
     }
 
