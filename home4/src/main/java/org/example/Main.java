@@ -27,5 +27,6 @@ public class Main {
         employeeDirectory.addPerson(p6);
         System.out.println(employeeDirectory.getPersonById(1));
         System.out.println(employeeDirectory.getPersonByExperience(1.5));
+        System.out.println(employeeDirectory.getPhoneByName("Petr"));
     }
 }

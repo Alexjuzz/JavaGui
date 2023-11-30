@@ -26,11 +26,11 @@ public class EmployeeDirectory {
         this.personList = new ArrayList<>();
     }
 
-    public List<String> getPhoneByName(String name) {
-        List<String> resultList = new ArrayList<>();
+    public List<Person> getPhoneByName(String name) {
+        List<Person> resultList = new ArrayList<>();
         for (Person p : personList) {
             if(p.getName().equals(name)){
-                resultList.add("Номер сотрудника " + p.getName() + " " + p.getPhone());
+                resultList.add(p);
             }
         }
         return resultList;
