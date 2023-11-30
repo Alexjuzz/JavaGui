@@ -9,13 +9,19 @@ package org.example;
 
  */
 public class Fork {
-    boolean isBusy = false;
+   public   volatile  boolean isBusy = false;
 
     public boolean isBusy() {
         return isBusy;
     }
 
-    public void setBusy(boolean busy) {
+    private void setBusy(boolean busy) {
         isBusy = busy;
+    }
+    public void takeFork(){
+        setBusy(true);
+    }
+    public void putFork(){
+        setBusy(false);
     }
 }

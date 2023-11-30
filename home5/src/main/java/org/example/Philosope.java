@@ -1,4 +1,5 @@
 package org.example;
+
 /*
             Пять безмолвных философов сидят вокруг круглого стола, перед каждым философом стоит тарелка спагетти.
             Вилки лежат на столе между каждой парой ближайших философов.
@@ -16,7 +17,9 @@ public class Philosope {
     private int countEat = 0;
 
     public void setCountEat() {
-        this.countEat++;
+        if (this.rightFork != null && this.leftFork != null) {
+            this.countEat++;
+        }
     }
 
     public Fork getRightFork() {
@@ -24,7 +27,9 @@ public class Philosope {
     }
 
     public void setRightFork(Fork rightFork) {
-        this.rightFork = rightFork;
+        if (this.rightFork == null) {
+            this.rightFork = rightFork;
+        }
     }
 
     public Fork getLeftFork() {
@@ -32,7 +37,9 @@ public class Philosope {
     }
 
     public void setLeftFork(Fork leftFork) {
-        this.leftFork = leftFork;
+        if (this.leftFork == null) {
+            this.leftFork = leftFork;
+        }
     }
 
     public boolean isEat() {
@@ -41,7 +48,7 @@ public class Philosope {
 
     public void setEat(boolean eat) {
 
-        if(countEat <= 2){
+        if (countEat <= 2) {
             isEat = eat;
         }
 
