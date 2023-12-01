@@ -22,6 +22,7 @@ public class Philosope implements Runnable {
     private boolean isEat = false;
     Random random = new Random();
     private int countEat = 0;
+
     public Philosope(String name, List<Fork> forkList) {
         this.name = name;
         this.forkList = forkList;
@@ -40,35 +41,52 @@ public class Philosope implements Runnable {
     public Fork getRightFork() {
         return rightFork;
     }
+
     public Fork getLeftFork() {
         return leftFork;
     }
+
     public void setRightFork() {
         try {
-           Fork current_fork = getFork(forkList);
-            if (this.rightFork == null &&  current_fork != null && !current_fork.isBusy()) {
+            Fork current_fork = getFork(forkList);
+            if (this.rightFork == null && current_fork != null && !current_fork.isBusy()) {
                 this.rightFork = current_fork;
-                this.rightFork.takeFork();
+                this.rightFork.tryTake();
+                if (this.rightFork.getCountTakes() > 1) {
+                    System.out.println(rightFork.getCountTakes());
+                    putFork();
+                            Thread.sleep(2000);
+                }
 
-            }else if(getRightFork() != null){
+            } else if (getRightFork() != null) {
                 getRightFork().putFork();
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
 
     }
+    public void putFork(){
+      if(this.leftFork != null)  this.leftFork.putFork();
+       if(this.rightFork != null) this.rightFork.putFork();
+    }
+
     public void setLeftFork() {
         try {
             Fork current_fork = getFork(forkList);
-            if (this.leftFork == null && current_fork != null &&!current_fork.isBusy()) {
+            if (this.leftFork == null && current_fork != null && !current_fork.isBusy()) {
                 this.leftFork = current_fork;
-                this.leftFork.takeFork();
-            }else  if(getRightFork() != null){
+                this.leftFork.tryTake();
+                if(leftFork.getCountTakes() > 1){
+                    System.out.println(leftFork.getCountTakes());
+                    putFork();
+                    Thread.sleep(2100);
+                }
+            } else if (getRightFork() != null) {
                 getRightFork().putFork();
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -78,14 +96,14 @@ public class Philosope implements Runnable {
     }
 
 
-
     public boolean checkHands() {
         return getLeftFork() != null && getRightFork() != null;
     }
-    private Fork getFork(List<Fork> forkList){
-        for (Fork f: forkList
-             ) {
-            if(!f.isBusy()){
+
+    private Fork getFork(List<Fork> forkList) {
+        for (Fork f : forkList
+        ) {
+            if (!f.isBusy()) {
                 return f;
             }
         }
@@ -93,22 +111,22 @@ public class Philosope implements Runnable {
     }
 
     public void toEat() throws InterruptedException {
-      try {
-          long r  = random.nextInt(1000);
+        try {
+            long r = random.nextInt(1000);
 
-          if(!isEat()) {
-              Thread.sleep(r);
-              countDownLatch.countDown();
-              setRightFork();
-              setLeftFork();
-              setCountEat();
-              countDownLatch.await();
-              System.out.println("Философ " + name + " поел");
-          }
-      }catch (InterruptedException e){
+            if (!isEat()) {
+                Thread.sleep(r);
+                countDownLatch.countDown();
+                setRightFork();
+                setLeftFork();
+                setCountEat();
+                countDownLatch.await();
+                System.out.println("Философ " + name + " поел");
+            }
+        } catch (InterruptedException e) {
 
-          e.printStackTrace();
-      }
+            e.printStackTrace();
+        }
     }
 
     @Override

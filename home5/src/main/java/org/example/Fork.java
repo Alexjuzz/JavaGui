@@ -9,19 +9,18 @@ package org.example;
 
  */
 //
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 
 
 
 public class Fork {
    public  volatile boolean isBusy = false;
-   private int idFork;
-   private Lock lock = new ReentrantLock();
+   private int countTakes;
 
-
-
+    public void tryTake(){
+        countTakes++;
+        takeFork();
+    }
 
     public boolean isBusy() {
         return isBusy;
@@ -31,11 +30,12 @@ public class Fork {
         isBusy = busy;
     }
     public void takeFork(){
-        lock.lock();
         setBusy(true);
     }
     public void putFork(){
         setBusy(false);
-        lock.unlock();
+    }
+    public int getCountTakes() {
+        return countTakes;
     }
 }
