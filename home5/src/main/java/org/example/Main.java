@@ -6,17 +6,20 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         List<Fork> forkList = new ArrayList<>();
-        forkList.add(new Fork());
-        forkList.add(new Fork());
-        forkList.add(new Fork());
-        forkList.add(new Fork());
-        Philosope philosope = new Philosope("U");
-        Philosope philosope2 = new Philosope("Z");
-        Philosope philosope3 = new Philosope("A");
-        philosope3.setLeftFork(forkList.get(0));
-        philosope3.setRightFork(forkList.get(1));
-        System.out.println(forkList.get(0).isBusy);
-        System.out.println(forkList.get(1).isBusy);
-        philosope2.setLeftFork(forkList.get(0));
+        Philosope p1 = new Philosope("Buga",forkList);
+        Philosope p2 = new Philosope("Qua",forkList);
+        Philosope p3 = new Philosope("MUI",forkList);
+        Philosope p4 = new Philosope("OOGAA",forkList);
+        Philosope p5 = new Philosope("XaE",forkList);
+        Thread thread = new Thread(p1);
+        Thread thread2 = new Thread(p2);
+        Thread thread3= new Thread(p3);
+        Thread thread4 = new Thread(p4);
+        Thread thread5 = new Thread(p5);
+        thread.start();
+        thread2.start();
+        thread3.start();
+        thread4.start();
+        thread5.start();
     }
 }
