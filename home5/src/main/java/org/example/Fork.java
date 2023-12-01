@@ -8,8 +8,20 @@ package org.example;
         Философ может взять только две вилки сразу, то есть обе вилки должны быть свободны
 
  */
+//
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+
+
+
 public class Fork {
-   public   volatile  boolean isBusy = false;
+   public  volatile boolean isBusy = false;
+   private int idFork;
+   private Lock lock = new ReentrantLock();
+
+
+
 
     public boolean isBusy() {
         return isBusy;
@@ -19,9 +31,11 @@ public class Fork {
         isBusy = busy;
     }
     public void takeFork(){
+        lock.lock();
         setBusy(true);
     }
     public void putFork(){
         setBusy(false);
+        lock.unlock();
     }
 }

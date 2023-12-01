@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 
 /*
@@ -19,6 +20,7 @@ public class Philosope implements Runnable {
     private Fork leftFork;
     private boolean isThings = true;
     private boolean isEat = false;
+    Random random = new Random();
     private int countEat = 0;
     public Philosope(String name, List<Fork> forkList) {
         this.name = name;
@@ -49,12 +51,12 @@ public class Philosope implements Runnable {
                 this.rightFork.takeFork();
 
             }else if(getRightFork() != null){
-                Thread.sleep(1000);
                 getRightFork().putFork();
             }
         }catch(Exception e){
             e.printStackTrace();
         }
+
 
     }
     public void setLeftFork() {
@@ -64,7 +66,6 @@ public class Philosope implements Runnable {
                 this.leftFork = current_fork;
                 this.leftFork.takeFork();
             }else  if(getRightFork() != null){
-                Thread.sleep(1000);
                 getRightFork().putFork();
             }
         }catch(Exception e){
@@ -78,16 +79,13 @@ public class Philosope implements Runnable {
 
 
 
-    public boolean checkHands(){
-        if(getLeftFork() != null && getRightFork() != null){
-           return true;
-        }
-        return false;
+    public boolean checkHands() {
+        return getLeftFork() != null && getRightFork() != null;
     }
     private Fork getFork(List<Fork> forkList){
         for (Fork f: forkList
              ) {
-            if(!f.isBusy){
+            if(!f.isBusy()){
                 return f;
             }
         }
@@ -96,12 +94,17 @@ public class Philosope implements Runnable {
 
     public void toEat() throws InterruptedException {
       try {
-          countDownLatch.countDown();
-          setRightFork();
-          setLeftFork();
-          setCountEat();
-          countDownLatch.await();
-          System.out.println("Философ " + name + " поел");
+          long r  = random.nextInt(1000);
+
+          if(!isEat()) {
+              Thread.sleep(r);
+              countDownLatch.countDown();
+              setRightFork();
+              setLeftFork();
+              setCountEat();
+              countDownLatch.await();
+              System.out.println("Философ " + name + " поел");
+          }
       }catch (InterruptedException e){
 
           e.printStackTrace();

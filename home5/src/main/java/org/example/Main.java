@@ -6,6 +6,12 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         List<Fork> forkList = new ArrayList<>();
+        forkList.add(new Fork());
+        forkList.add(new Fork());
+        forkList.add(new Fork());
+        forkList.add(new Fork());
+        forkList.add(new Fork());
+
         Philosope p1 = new Philosope("Buga",forkList);
         Philosope p2 = new Philosope("Qua",forkList);
         Philosope p3 = new Philosope("MUI",forkList);
