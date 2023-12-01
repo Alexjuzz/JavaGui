@@ -27,16 +27,13 @@ public class Philosope implements Runnable {
     /**
      * Обновление количества ужинов.
      * Изменение статуса текущей вилки в руке.
-     * @return
      */
-    public boolean setCountEat() {
+    public void setCountEat() {
         if (checkHands() && !isEat) {
             this.countEat++;
             this.rightFork.putFork();
             this.leftFork.putFork();
-            return true;
         }
-        return false;
     }
 
     public Fork getRightFork() {
@@ -46,8 +43,9 @@ public class Philosope implements Runnable {
     public Fork getLeftFork() {
         return leftFork;
     }
+
     /**
-      * Взятие правой рукой.
+     * Взятие правой рукой.
      * Ищем свободную вилку
      * далее смотрим нет ли в левой руке вилки уже(Вдруг забыл) если нет, проверяем это вообще вилка ли?!
      * если оказывается что и вилка свободна, то смотрим не держит ли её кто-то ещё помимо нас.
@@ -75,9 +73,10 @@ public class Philosope implements Runnable {
 
 
     }
-    public void putFork(){
-      if(this.leftFork != null)  this.leftFork.putFork();
-       if(this.rightFork != null) this.rightFork.putFork();
+
+    public void putFork() {
+        if (this.leftFork != null) this.leftFork.putFork();
+        if (this.rightFork != null) this.rightFork.putFork();
     }
 
     /**
@@ -95,7 +94,7 @@ public class Philosope implements Runnable {
             if (this.leftFork == null && current_fork != null && !current_fork.isBusy()) {
                 this.leftFork = current_fork;
                 this.leftFork.tryTake();
-                if(leftFork.getCountTakes() > 1){
+                if (leftFork.getCountTakes() > 1) {
                     putFork();
                     Thread.sleep(2100);
                 }
@@ -109,7 +108,6 @@ public class Philosope implements Runnable {
 
     /**
      * Проверка думает или ест.
-     * @return
      */
     public boolean isEat() {
         return isEat;
@@ -117,7 +115,6 @@ public class Philosope implements Runnable {
 
     /**
      * Проверка рук, то что в обеих руках находятся свободные вилки.
-     * @return
      */
     public boolean checkHands() {
         return getLeftFork() != null && getRightFork() != null;
@@ -125,8 +122,6 @@ public class Philosope implements Runnable {
 
     /**
      * Из полученого списка проверяем свободные вилки, если есть такие, то выдаем.
-     * @param forkList
-     * @return
      */
     private Fork getFork(List<Fork> forkList) {
         for (Fork f : forkList
@@ -138,28 +133,20 @@ public class Philosope implements Runnable {
         return null;
     }
 
-    /**  Проверяем чем занят филосов isEat - true - eст или false - думает, далее пробуем взять вилку
-     *  в правую руку, потом отдыхаем дальше тоже самое с левой рукой.
-     *  и пробуем покушать.
-     *
-     * @throws InterruptedException
+    /**
+     * Проверяем чем занят филосов isEat - true - eст или false - думает, далее пробуем взять вилку
+     * в правую руку, потом отдыхаем дальше тоже самое с левой рукой.
+     * и пробуем покушать.
      */
     public void toEat() throws InterruptedException {
-        try {
-            while (countEat != 2){
+        while (countEat != 2) {
             if (!isEat()) {
                 setRightFork();
-                Thread.sleep(1000);
                 setLeftFork();
                 setCountEat();
-                }
-
             }
-            System.out.println("Философ " + name + " поел");
-        } catch (InterruptedException e) {
-
-            e.printStackTrace();
         }
+        System.out.println("Философ " + name + " поел");
     }
 
     @Override
