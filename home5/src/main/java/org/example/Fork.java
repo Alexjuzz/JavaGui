@@ -9,10 +9,6 @@ package org.example;
 
  */
 //
-
-
-
-
 public class Fork {
    public  volatile boolean isBusy = false;
    private int countTakes;
