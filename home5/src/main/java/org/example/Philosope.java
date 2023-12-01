@@ -112,15 +112,12 @@ public class Philosope implements Runnable {
 
     public void toEat() throws InterruptedException {
         try {
-            long r = random.nextInt(1000);
 
             if (!isEat()) {
-                Thread.sleep(r);
-                countDownLatch.countDown();
                 setRightFork();
+                Thread.sleep(1000);
                 setLeftFork();
                 setCountEat();
-                countDownLatch.await();
                 System.out.println("Философ " + name + " поел");
             }
         } catch (InterruptedException e) {
