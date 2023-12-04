@@ -59,7 +59,6 @@ public class MontyHallSimulation {
         while (switchedChoice == originalChoice) {
             switchedChoice = random.nextInt(1, 3);
         }
-        System.out.println(boxes.get(switchedChoice) );
         return switchedChoice;
     }
 
